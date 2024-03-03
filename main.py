@@ -8,6 +8,7 @@ HEIGTH = 600
 class Snake:
     head_pos = [10, 10]
     vector = 'down'
+
     def __init__(self):
         self.head_pos = [10, 10]
 
