@@ -17,13 +17,13 @@ class Snake:
 
     def move_snake(self):
         if self.vector == 'down':
-            self.head_pos[1] += 10
+            self.head_pos[1] += 1
         elif self.vector == 'up':
-            self.head_pos[1] -= 10
+            self.head_pos[1] -= 1
         elif self.vector == 'left':
-            self.head_pos[0] -= 10
+            self.head_pos[0] -= 1
         elif self.vector == 'right':
-            self.head_pos[0] += 10
+            self.head_pos[0] += 1
 
 
 class Game:
@@ -58,7 +58,7 @@ class Game:
             snake.move_snake()
             snake.draw_snake(game)
             pygame.display.update()
-            pygame.time.wait(500)
+            pygame.time.wait(10)
 
 
 if __name__ == '__main__':
