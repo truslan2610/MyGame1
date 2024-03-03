@@ -4,6 +4,10 @@ import sys
 WIDTH = 800
 HEIGTH = 600
 
+Width_Game = 600
+Height_Game = 600
+
+
 
 class Snake:
     head_pos = [10, 10]
@@ -25,13 +29,27 @@ class Snake:
         elif self.vector == 'right':
             self.head_pos[0] += 1
 
+        if self.head_pos[0] >= 605:
+            Game.Stop_Game=True
+        if self.head_pos[0] <= 5:
+            Game.Stop_Game=True
+        if self.head_pos[1] >= 605:
+            Game.Stop_Game=True
+        if self.head_pos[1] <= 5:
+            Game.Stop_Game=True
 
 class Game:
+    Stop_Game = False
+
+
     def __int__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((WIDTH, HEIGTH))
         pygame.display.set_caption('Game test 1')
         self.clock = pygame.time.Clock()
+
+        self.game_border_pass = [5, 5]
+        pygame.draw.rect(self.screen, 'blue',(self.game_border_pass[0], self.game_border_pass[1], Width_Game, Height_Game))
 
     def run(self):
         snake = Snake()
@@ -54,11 +72,30 @@ class Game:
                         snake.vector = 'right'
                 # print(event)
 
-            self.screen.fill('black')
+            #self.screen.fill('black')
+            self.game_border_pass = [5, 5]
+            pygame.draw.rect(self.screen, 'blue',(self.game_border_pass[0], self.game_border_pass[1], Width_Game, Height_Game))
             snake.move_snake()
             snake.draw_snake(game)
             pygame.display.update()
             pygame.time.wait(10)
+            if self.Stop_Game:
+                sc = pygame.display.set_mode((800, 600))
+                sc.fill((255, 255, 255))
+
+                f1 = pygame.font.Font(None, 36)
+                text1 = f1.render('Game Over', 1, (180, 0, 0))
+
+                sc.blit(text1, (10, 50))
+
+                pygame.display.update()
+
+                while 1:
+                    for i in pygame.event.get():
+                        if i.type == pygame.QUIT:
+                            exit()
+                sys.exit()
+
 
 
 if __name__ == '__main__':
