@@ -113,8 +113,8 @@ class Snake:
             head_x = self.head_pos[0]
             head_y = self.head_pos[1]
             if self.tail_snake[i] == self.head_pos:
-                print(f'tail {self.tail_snake[i]}')
-                print(f'head {self.head_pos}')
+                # print(f'tail {self.tail_snake[i]}')
+                # print(f'head {self.head_pos}')
                 Game.Stop_Game = True
             i += 1
 
